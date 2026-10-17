@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, type TouchEvent } from "react";
+import { useState, useEffect, useRef, type TouchEvent } from "react";
 
 interface SlideViewerProps {
   images: string[];
