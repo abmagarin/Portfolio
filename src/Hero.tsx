@@ -2,6 +2,7 @@ import SlideViewer from "./components/SlideViewer";
 import MorphBlob from "./components/MorphBlob";
 import ConfettiBackground from "./components/ConfettiBackground";
 import heroImg from "./assets/hero.png";
+import { Preloader } from "./components/Preloader";
 import { ReviewCard } from "./components/ReviewCard";
 import { ContactSection } from "./components/ContactSection";
 import { TiltedPhotoCarousel } from "./components/TiltedPhotoCarousel";
@@ -10,20 +11,23 @@ import layingFigureImg from "./assets/figureLaying.png";
 import figurePhotoImg from "./assets/figurePhoto.png";
 import "./App.css";
 
-const project1ImagesMap = import.meta.glob(
-  "./assets/slides/project1/*.{png,jpg,jpeg,svg}",
-  { eager: true, as: "url" },
+const project1ImagesMap = import.meta.glob<string>(
+  "./assets/slides/project1/*.{png,jpg,jpeg,svg,webp}",
+  { eager: true, query: "?url", import: "default" },
 );
-const project2ImagesMap = import.meta.glob(
-  "./assets/slides/project2/*.{png,jpg,jpeg,svg}",
-  { eager: true, as: "url" },
+
+const project2ImagesMap = import.meta.glob<string>(
+  "./assets/slides/project2/*.{png,jpg,jpeg,svg,webp}",
+  { eager: true, query: "?url", import: "default" },
 );
+
 const project1Images = Object.values(project1ImagesMap);
 const project2Images = Object.values(project2ImagesMap);
 
 export default function Hero() {
   return (
     <>
+      <Preloader />
       <section className="bg-texture h-[100dvh] w-full flex flex-col items-center justify-center relative overflow-hidden px-4">
         <div className="absolute top-[20px] flex items-top justify-center select-none pointer-events-none z-10">
           <h1 className="text-[clamp(1.5rem,2vw,3rem)] font-black uppercase tracking-tighter text-[var(--text-color)] whitespace-nowrap leading-none">
